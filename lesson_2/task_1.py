@@ -17,6 +17,7 @@ def input_number() -> int:
         return input_number()
     return number
 
+
 if __name__ == '__main__':
     
     number = input_number()
