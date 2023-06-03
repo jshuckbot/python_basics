@@ -1,9 +1,18 @@
 def return_kwargs(**kwargs):
-    return {v: k for k, v in kwargs.items()}
+    tmp_dict = {}
+
+    for key, value in kwargs.items():
+        try:
+            hash(key)
+            tmp_dict[value] = key
+        except TypeError:
+            tmp_dict[str(value)] = key
+
+    return tmp_dict
 
 
 if __name__ == '__main__':
     try:
-        print(return_kwargs(a=3, d=5))
+        print(return_kwargs(a=[1, 2, 3], d=5))
     except TypeError:
         print('Вы ввели позиционный аргумент, а нужно именнованный')
