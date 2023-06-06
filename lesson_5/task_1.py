@@ -13,4 +13,3 @@ if __name__ == '__main__':
     
     path = '/Users/jshuckbot/projects/geekbrains/python_basics/lesson_5/ivan.txt'
     print(get_absolute_path(path))
-tyas
