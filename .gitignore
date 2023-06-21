@@ -23,7 +23,7 @@ wheels/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
-*.egg
+*.egg2
 MANIFEST
 
 # PyInstaller
@@ -251,3 +251,5 @@ fabric.properties
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+.idea/
