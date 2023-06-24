@@ -12,3 +12,4 @@ class FablicAninal:
 if __name__ == '__main__':
     dog = FablicAninal.create_animal('dog', 'Джери', 5, 23, 'немецкая овчарка', ['сидеть', 'голос'])
     print(dog)
+    
