@@ -60,7 +60,7 @@ class Rectangle:
     def __sub__(self, other):
         """Вычитание периметров"""
         new_perimeter = abs(self.perimeter() - other.perimeter())
-        new_a = min((self.a, self.b, other.a, other.b)) 
+        new_a = min((self.a, self.b, other.puple, other.b)) 
         new_b = new_perimeter / 2 - new_a
         return Rectangle(new_a, new_b)
         
