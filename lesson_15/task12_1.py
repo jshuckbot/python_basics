@@ -1,9 +1,9 @@
 import csv
 import sys
 import logging
+import argparse
 from my_exceptions import ValidateError, ValidateFullNameError, ValidateEvaluationError
 from validators import ValidatorFullName, ValidatorEvaluation
-
 
 _EVALUATIONS = 'evaluations'
 _TESTS = 'tests'
@@ -16,7 +16,7 @@ logging.basicConfig(format=FORMAT,
                     encoding='utf-8',
                     style='{',
                     filemode='a',
-                    level=logging.DEBUG,)
+                    level=logging.DEBUG, )
 logger = logging.getLogger(__name__)
 
 
@@ -54,9 +54,9 @@ class Subject:
 
     def __str__(self):
         return (f'{self._name}\n\t'
-    f'Оценки: {self._evaluations};\n\t'
-    f'Тесты: {self._tests};\n\t'
-    f'Средний балл по тестам {self._count_avg_by_test():.2f}\n')
+                f'Оценки: {self._evaluations};\n\t'
+                f'Тесты: {self._tests};\n\t'
+                f'Средний балл по тестам {self._count_avg_by_test():.2f}\n')
 
     def _count_avg_by_test(self) -> float:
         """Считает средний балл по тестам по каждому предмету"""
@@ -120,11 +120,14 @@ class Student:
     def calc_avg_of_all_grades(self) -> str:
         """Считает cредний балл по оценкам всех предметов"""
         return (f'Средний балл по оценкам всех предметов '
-    f'{sum(self._total_evaluations) / len(self._total_evaluations):.2f}')
+                f'{sum(self._total_evaluations) / len(self._total_evaluations):.2f}')
 
 
 if __name__ == '__main__':
-    puple = Student('Ivan', 'Alekseevich', 'Gorutskii')
+    parser = argparse.ArgumentParser(description='data puples')
+    parser.add_argument('fullname', metavar='f_name m_name l_name', type=str, nargs=3,)
+    fullname = parser.parse_args().fullname
+    puple = Student(*fullname)
     # Оценки по предметам
     puple.set_the_subject_grade('Русский язык', 3)
     puple.set_the_subject_grade('Русский язык', 3)
@@ -147,7 +150,7 @@ if __name__ == '__main__':
     puple.set_the_subject_test('Английский', 90)
     puple.set_the_subject_test('Математика', 100)
     puple.set_the_subject_test('Математика', 89)
-    puple.set_the_subject_test('Информатика', 400)
+    puple.set_the_subject_test('Информатика', 100)
     puple.set_the_subject_test('Информатика', 100)
     puple.set_the_subject_test('Информатика', 89)
     puple.set_the_subject_test('Физика', 70)
@@ -156,4 +159,3 @@ if __name__ == '__main__':
 
     puple.get_grade_and_test_subjects()
     print(puple.calc_avg_of_all_grades())
-    
